@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Environment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        #start-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #FFF;
+            border: none;
+            cursor: pointer;
+        }
+
+        .loading-bar {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulation Environment</h1>
+    <button id="start-button">Start Simulation</button>
+    <div class="loading-bar">
+        <!-- Add loading bar or spinner here -->
+        Loading...
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#start-button').click(function() {
+                // Hide the start button and show the loading bar
+                $(this).hide();
+                $('.loading-bar').show();
+
+                // Send an AJAX request to start the simulation
+                $.ajax({
+                    url: '/start_simulation',
+                    method: 'POST',
+                    success: function(response) {
+                        // Simulation has started
+                        console.log(response);
+                    },
+                    error: function(err) {
+                        console.error(err);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
